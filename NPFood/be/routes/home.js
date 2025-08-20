@@ -3,16 +3,18 @@ const router = express.Router();
 const homeController = require('../controllers/homeController');
 const auth = require('../middleware/auth');
 
-// Banner
-router.post('/banner', auth, homeController.addBanner);
+// Banner CRUD
+router.get('/banner', homeController.getBanners);
+router.post('/banner', auth, homeController.createBanner);
 router.put('/banner/:id', auth, homeController.updateBanner);
 router.delete('/banner/:id', auth, homeController.deleteBanner);
 
-// About
+// About CRUD
 router.get('/about', homeController.getAbout);
-router.put('/about', auth, homeController.updateAbout);
+router.put('/about/:id', auth, homeController.updateAbout);
 
 // Best Products
-router.post('/best-products', homeController.getBestProducts);
+router.get('/best-products', homeController.getBestProducts);
+router.put('/best-products', auth, homeController.setBestProducts);
 
 module.exports = router;
